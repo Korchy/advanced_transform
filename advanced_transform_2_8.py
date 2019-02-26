@@ -1,3 +1,8 @@
+# Advanced Transform add-on v. 0.2 for Blender 2.8
+# ported by Nikita Akimov interplanety@interplanety.org
+# GitHub
+#   https://github.com/Korchy/advanced_transform
+
 import bpy
 import bgl
 import blf
@@ -22,7 +27,7 @@ bl_info = {
     "location": "View3D > Add > Object > Transform,",
     "description": "Auto set axis constrain",
     "author": "Vladislav Kindushov",
-    "version": (0, 2),
+    "version": (0, 2, 1),
     "blender": (2, 80, 0),
     "category": "Object",
 }
