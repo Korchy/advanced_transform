@@ -378,7 +378,7 @@ def draw_callback_rot(self, context):
         shader.uniform_float("color", color)
         batch.draw(shader)
 
-    # context.scene.cursor_location = self.center
+    # context.scene.cursor.location = self.center
     #     # restore opengl defaults
     bgl.glLineWidth(1)
     bgl.glDisable(bgl.GL_BLEND)
@@ -612,12 +612,12 @@ class AdvancedMove(Operator):
                     self.center = bpy.context.active_object.matrix_world * (
                         1 / 8 * sum((Vector(b) for b in bpy.context.active_object.bound_box), Vector()))
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'CURSOR':
-                    self.center = context.scene.cursor_location.copy()
+                    self.center = context.scene.cursor.location.copy()
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'INDIVIDUAL_ORIGINS' or bpy.context.scene.tool_settings.transform_pivot_point == 'MEDIAN_POINT':
-                    temp = context.scene.cursor_location.copy()
+                    temp = context.scene.cursor.location.copy()
                     bpy.ops.view3d.snap_cursor_to_selected()
-                    self.center = context.scene.cursor_location.copy()
-                    context.scene.cursor_location = temp
+                    self.center = context.scene.cursor.location.copy()
+                    context.scene.cursor.location = temp
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'ACTIVE_ELEMENT':
                     mesh = context.active_object.data
                     bm = bmesh.from_edit_mesh(mesh)
@@ -663,12 +663,12 @@ class AdvancedMove(Operator):
                     self.center = bpy.context.active_object.matrix_world * (
                         1 / 8 * sum((Vector(b) for b in bpy.context.active_object.bound_box), Vector()))
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'CURSOR':
-                    self.center = context.scene.cursor_location.copy()
+                    self.center = context.scene.cursor.location.copy()
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'INDIVIDUAL_ORIGINS' or bpy.context.scene.tool_settings.transform_pivot_point == 'MEDIAN_POINT':
-                    temp = context.scene.cursor_location.copy()
+                    temp = context.scene.cursor.location.copy()
                     bpy.ops.view3d.snap_cursor_to_selected()
-                    self.center = context.scene.cursor_location.copy()
-                    context.scene.cursor_location = temp
+                    self.center = context.scene.cursor.location.copy()
+                    context.scene.cursor.location = temp
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'ACTIVE_ELEMENT':
                     self.center = context.active_object.location.copy()
 
@@ -906,12 +906,12 @@ class AdvancedScale(Operator):
                     self.center = bpy.context.active_object.matrix_world * (
                         1 / 8 * sum((Vector(b) for b in bpy.context.active_object.bound_box), Vector()))
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'CURSOR':
-                    self.center = context.scene.cursor_location.copy()
+                    self.center = context.scene.cursor.location.copy()
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'INDIVIDUAL_ORIGINS' or bpy.context.scene.tool_settings.transform_pivot_point == 'MEDIAN_POINT':
-                    temp = context.scene.cursor_location.copy()
+                    temp = context.scene.cursor.location.copy()
                     bpy.ops.view3d.snap_cursor_to_selected()
-                    self.center = context.scene.cursor_location.copy()
-                    context.scene.cursor_location = temp
+                    self.center = context.scene.cursor.location.copy()
+                    context.scene.cursor.location = temp
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'ACTIVE_ELEMENT':
                     mesh = context.active_object.data
                     bm = bmesh.from_edit_mesh(mesh)
@@ -959,12 +959,12 @@ class AdvancedScale(Operator):
                     self.center = bpy.context.active_object.matrix_world * (
                         1 / 8 * sum((Vector(b) for b in bpy.context.active_object.bound_box), Vector()))
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'CURSOR':
-                    self.center = context.scene.cursor_location.copy()
+                    self.center = context.scene.cursor.location.copy()
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'INDIVIDUAL_ORIGINS' or bpy.context.scene.tool_settings.transform_pivot_point == 'MEDIAN_POINT':
-                    temp = context.scene.cursor_location.copy()
+                    temp = context.scene.cursor.location.copy()
                     bpy.ops.view3d.snap_cursor_to_selected()
-                    self.center = context.scene.cursor_location.copy()
-                    context.scene.cursor_location = temp
+                    self.center = context.scene.cursor.location.copy()
+                    context.scene.cursor.location = temp
 
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'ACTIVE_ELEMENT':
                     self.center = context.active_object.location.copy()
@@ -1067,7 +1067,7 @@ class AdvancedRotation(Operator):
                 self.temp_loc_first = GetCoordMouse(self, context, event)
             if event.value == 'PRESS':
                 self.LB = True
-                # context.scene.cursor_location = self.temp_loc_first
+                # context.scene.cursor.location = self.temp_loc_first
                 if self.LB_cal:
                     self.LB_cal = False
                     # self.temp_loc_last = GetCoordMouse(self, context, event)
@@ -1094,9 +1094,9 @@ class AdvancedRotation(Operator):
 
             if event.value == 'PRESS':
                 # if not self.RB:
-                # s = context.scene.cursor_location.copy()
-                # context.scene.cursor_location = self.temp_loc_first
-                # context.scene.cursor_location = self.temp_loc_last
+                # s = context.scene.cursor.location.copy()
+                # context.scene.cursor.location = self.temp_loc_first
+                # context.scene.cursor.location = self.temp_loc_last
                 self.RB = True
                 # print('point',int(round(self.temp_agle)))
                 # bpy.ops.transform.rotate(value=0)
@@ -1201,12 +1201,12 @@ class AdvancedRotation(Operator):
                     self.center = bpy.context.active_object.matrix_world * (
                         1 / 8 * sum((Vector(b) for b in bpy.context.active_object.bound_box), Vector()))
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'CURSOR':
-                    self.center = context.scene.cursor_location.copy()
+                    self.center = context.scene.cursor.location.copy()
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'INDIVIDUAL_ORIGINS' or bpy.context.scene.tool_settings.transform_pivot_point == 'MEDIAN_POINT':
-                    temp = context.scene.cursor_location.copy()
+                    temp = context.scene.cursor.location.copy()
                     bpy.ops.view3d.snap_cursor_to_selected()
-                    self.center = context.scene.cursor_location.copy()
-                    context.scene.cursor_location = temp
+                    self.center = context.scene.cursor.location.copy()
+                    context.scene.cursor.location = temp
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'ACTIVE_ELEMENT':
                     mesh = context.active_object.data
                     bm = bmesh.from_edit_mesh(mesh)
@@ -1251,12 +1251,12 @@ class AdvancedRotation(Operator):
                     self.center = bpy.context.active_object.matrix_world * (
                         1 / 8 * sum((Vector(b) for b in bpy.context.active_object.bound_box), Vector()))
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'CURSOR':
-                    self.center = context.scene.cursor_location.copy()
+                    self.center = context.scene.cursor.location.copy()
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'INDIVIDUAL_ORIGINS' or bpy.context.scene.tool_settings.transform_pivot_point == 'MEDIAN_POINT':
-                    temp = context.scene.cursor_location.copy()
+                    temp = context.scene.cursor.location.copy()
                     bpy.ops.view3d.snap_cursor_to_selected()
-                    self.center = context.scene.cursor_location.copy()
-                    context.scene.cursor_location = temp
+                    self.center = context.scene.cursor.location.copy()
+                    context.scene.cursor.location = temp
                 elif bpy.context.scene.tool_settings.transform_pivot_point == 'ACTIVE_ELEMENT':
                     self.center = context.active_object.location.copy()
 
